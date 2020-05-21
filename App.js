@@ -10,6 +10,6 @@ const App = () => {
       clearInterval(interval);
     };
   }, []);
-  return <div>I am running {timer} on every 5 second</div>;
+  return <div>maaaster ji, I am running {timer} on every 5 second</div>;
 };
 export default App;
