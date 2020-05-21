@@ -10,6 +10,10 @@ const App = () => {
       clearInterval(interval);
     };
   }, []);
-  return <div>I am running {timer} on every 5 second</div>;
+  return (
+    <div>
+      I am running {timer} on every 5 second. please {process.env.name}
+    </div>
+  );
 };
 export default App;
