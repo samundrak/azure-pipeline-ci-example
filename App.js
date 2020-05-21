@@ -5,15 +5,17 @@ const App = () => {
   React.useEffect(() => {
     const interval = setInterval(() => {
       setTimer(timer + 1);
-    }, 1000);
+    }, 5000);
     return () => {
       clearInterval(interval);
     };
   }, []);
+ 
   return (
     <div>
       I am running {timer} on every 5 second. please {process.env.name}
     </div>
   );
+ 
 };
 export default App;
