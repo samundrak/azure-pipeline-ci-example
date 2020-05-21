@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- none
 
 variables:
   uiSource: './'
@@ -18,7 +18,10 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-
+- task: CmdLine@2
+  inputs:
+    script: 'touch .env'
+    
 - script: |
     pushd $(uiSource)
     npm install
@@ -31,7 +34,7 @@ steps:
     rootFolderOrFile: '$(uiBuild)'
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.).zip'
     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
