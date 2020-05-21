@@ -5,7 +5,7 @@ const App = () => {
   React.useEffect(() => {
     const interval = setInterval(() => {
       setTimer(timer + 1);
-    }, 1000);
+    }, 5000);
     return () => {
       clearInterval(interval);
     };
