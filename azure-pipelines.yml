@@ -3,8 +3,10 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- none
+pr:
+  - master
+  - releases/*
+  - features/*
 
 variables:
   uiSource: './'
@@ -34,11 +36,11 @@ steps:
     rootFolderOrFile: '$(uiBuild)'
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.SourceBranchName).zip'
     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
+    ArtifactName: '$(Build.SourceBranchName)'
     publishLocation: 'Container'
