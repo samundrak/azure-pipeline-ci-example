@@ -30,18 +30,11 @@ steps:
     npm run build
     popd
   displayName: 'npm install and build'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(uiBuild)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.SourceBranchName).zip'
-    replaceExistingArchive: true
+  
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'SAGEDEV'
-    sourceFolder: '$(Build.ArtifactStagingDirectory)'
+    sourceFolder: '$(uiBuild)'
     contents: '**'
     targetFolder: '/home/sagedev/apps'
     readyTimeout: '20000'
