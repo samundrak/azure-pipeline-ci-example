@@ -11,7 +11,7 @@ pr:
 variables:
   uiSource: './'
   uiBuild: '$(uiSource)/dist'
-  remotePath: '/home/sagedev/apps/$(Build.SourceBranchName)/'
+  remotePath: '/home/sagedev/apps/$(System.PullRequest.SourceBranch)/'
 
 pool:
   vmImage: 'ubuntu-latest'
