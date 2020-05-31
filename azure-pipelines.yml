@@ -11,6 +11,7 @@ pr:
 variables:
   uiSource: './'
   uiBuild: '$(uiSource)/dist'
+  remotePath: '/home/sagedev/apps/$(Build.SourceBranchName)/'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -36,5 +37,5 @@ steps:
     sshEndpoint: 'SAGEDEV'
     sourceFolder: '$(uiBuild)'
     contents: '**'
-    targetFolder: '/home/sagedev/apps'
+    targetFolder: '$(remotePath)'
     readyTimeout: '20000'
