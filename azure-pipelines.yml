@@ -36,11 +36,12 @@ steps:
     rootFolderOrFile: '$(uiBuild)'
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.SourceBranchName).zip'
+    archiveFile: '$(Build.SourceBranchName).zip'
     replaceExistingArchive: true
-
-- task: PublishBuildArtifacts@1
+- task: CopyFilesOverSSH@0
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: '$(Build.SourceBranchName)'
-    publishLocation: 'Container'
+    sshEndpoint: 'SAGEDEV'
+    sourceFolder: '$(Build.ArtifactStagingDirectory)'
+    contents: '**'
+    targetFolder: '/home/sagedev/apps'
+    readyTimeout: '20000'
